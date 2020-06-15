@@ -1,6 +1,7 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+
+import data from "./data";
 
 function App() {
   const openMenu = () => {
@@ -45,141 +46,25 @@ function App() {
       <main className="main">
         <div className="content">
           <ul className="products">
-            <li>
-              <div className="product">
-                <img
-                  className="product-image"
-                  src="/images/nikeairforce.jpg"
-                  alt="product"
-                />
-                <div className="product-name">
-                  <a href="product.html">SB Dunk High</a>
+            {data.products.map((product) => (
+              <li>
+                <div className="product">
+                  <img
+                    className="product-image"
+                    src={product.image}
+                    alt="product"
+                  />
+                  <div className="product-name">
+                    <a href="product.html">{product.name}</a>
+                  </div>
+                  <div className="product-brand">{product.brand}</div>
+                  <div className="product-price">{product.price}원</div>
+                  <div className="product-rating">
+                    {product.rating} Stars ({product.numReviews} Reviews)
+                  </div>
                 </div>
-                <div className="product-brand">Nike</div>
-                <div className="product-price">450,000</div>
-                <div className="product-rating">4.5 Stars (10 Reviews)</div>
-              </div>
-            </li>
-            <li>
-              <div className="product">
-                <img
-                  className="product-image"
-                  src="/images/nikeairforce.jpg"
-                  alt="product"
-                />
-                <div className="product-name">
-                  <a href="product.html">SB Dunk High</a>
-                </div>
-                <div className="product-brand">Nike</div>
-                <div className="product-price">450,000</div>
-                <div className="product-rating">4.5 Stars (10 Reviews)</div>
-              </div>
-            </li>
-            <li>
-              <div className="product">
-                <img
-                  className="product-image"
-                  src="/images/nikeairforce.jpg"
-                  alt="product"
-                />
-                <div className="product-name">
-                  <a href="product.html">SB Dunk High</a>
-                </div>
-                <div className="product-brand">Nike</div>
-                <div className="product-price">450,000</div>
-                <div className="product-rating">4.5 Stars (10 Reviews)</div>
-              </div>
-            </li>
-            <li>
-              <div className="product">
-                <img
-                  className="product-image"
-                  src="/images/nikeairforce.jpg"
-                  alt="product"
-                />
-                <div className="product-name">
-                  <a href="product.html">SB Dunk High</a>
-                </div>
-                <div className="product-brand">Nike</div>
-                <div className="product-price">450,000</div>
-                <div className="product-rating">4.5 Stars (10 Reviews)</div>
-              </div>
-            </li>
-            <li>
-              <div className="product">
-                <img
-                  className="product-image"
-                  src="/images/nikeairforce.jpg"
-                  alt="product"
-                />
-                <div className="product-name">
-                  <a href="product.html">SB Dunk High</a>
-                </div>
-                <div className="product-brand">Nike</div>
-                <div className="product-price">450,000</div>
-                <div className="product-rating">4.5 Stars (10 Reviews)</div>
-              </div>
-            </li>
-            <li>
-              <div className="product">
-                <img
-                  className="product-image"
-                  src="/images/nikeairforce.jpg"
-                  alt="product"
-                />
-                <div className="product-name">
-                  <a href="product.html">SB Dunk High</a>
-                </div>
-                <div className="product-brand">Nike</div>
-                <div className="product-price">450,000</div>
-                <div className="product-rating">4.5 Stars (10 Reviews)</div>
-              </div>
-            </li>
-            <li>
-              <div className="product">
-                <img
-                  className="product-image"
-                  src="/images/nikeairforce.jpg"
-                  alt="product"
-                />
-                <div className="product-name">
-                  <a href="product.html">SB Dunk High</a>
-                </div>
-                <div className="product-brand">Nike</div>
-                <div className="product-price">450,000</div>
-                <div className="product-rating">4.5 Stars (10 Reviews)</div>
-              </div>
-            </li>
-            <li>
-              <div className="product">
-                <img
-                  className="product-image"
-                  src="/images/nikeairforce.jpg"
-                  alt="product"
-                />
-                <div className="product-name">
-                  <a href="product.html">SB Dunk High</a>
-                </div>
-                <div className="product-brand">Nike</div>
-                <div className="product-price">450,000</div>
-                <div className="product-rating">4.5 Stars (10 Reviews)</div>
-              </div>
-            </li>
-            <li>
-              <div className="product">
-                <img
-                  className="product-image"
-                  src="/images/nikeairforce.jpg"
-                  alt="product"
-                />
-                <div className="product-name">
-                  <a href="product.html">SB Dunk High</a>
-                </div>
-                <div className="product-brand">Nike</div>
-                <div className="product-price">450,000</div>
-                <div className="product-rating">4.5 Stars (10 Reviews)</div>
-              </div>
-            </li>
+              </li>
+            ))}
           </ul>
         </div>
       </main>
