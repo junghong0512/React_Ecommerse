@@ -1,0 +1,29 @@
+{
+  "name": "react_ecommerse",
+  "version": "1.0.0",
+  "description": "Building a React Ecommerse Wep",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch backend --exec babel-node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junghong91/React_Ecommerse.git"
+  },
+  "author": "JungHong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/junghong91/React_Ecommerse/issues"
+  },
+  "homepage": "https://github.com/junghong91/React_Ecommerse#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "nodemon": "^2.0.4"
+  }
+}
