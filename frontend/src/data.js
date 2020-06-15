@@ -1,6 +1,7 @@
 export default {
   products: [
     {
+      _id: "1",
       name: "Nike SB Dunk High",
       category: "Shoes",
       image: "/images/nikeairforce.jpg",
@@ -10,6 +11,7 @@ export default {
       numReviews: 10,
     },
     {
+      _id: "2",
       name: "Nike Lebron 19",
       category: "Shoes",
       image: "/images/nikeairforce.jpg",
@@ -19,6 +21,17 @@ export default {
       numReviews: 13,
     },
     {
+      _id: "3",
+      name: "Nike Jordan Jersey",
+      category: "Pants",
+      image: "/images/nikeairforce.jpg",
+      price: 220000,
+      brand: "Nike",
+      rating: 4.8,
+      numReviews: 15,
+    },
+    {
+      _id: "4",
       name: "Nike Jordan Jersey",
       category: "Pants",
       image: "/images/nikeairforce.jpg",
