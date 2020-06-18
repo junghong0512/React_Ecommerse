@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"; // redux store value 조회
 import { detailsProduct } from "../actions/productActions";
 
 function ProductScreen(props) {
-  /* const product = data.products.find(
-    (item) => item._id === props.match.params.id
-  ); */
-
+  const [qty, setQty] = useState(1);
   const productDetails = useSelector((state) => state.productDetails);
   const { product, loading, error } = productDetails;
   const dispatch = useDispatch();
@@ -18,6 +15,10 @@ function ProductScreen(props) {
       //
     };
   }, []);
+
+  const handleAddToCart = () => {
+    props.history.push("/cart/" + props.match.params.id + "?qty=" + qty);
+  };
 
   return (
     <div>
@@ -53,20 +54,28 @@ function ProductScreen(props) {
           <div className="details-action">
             <ul>
               <li>Price: {product.price}</li>
-              <li>Status: {product.price}</li>
+              <li>
+                Status: {product.countInStock > 0 ? "In Stock" : "Unavailable"}
+              </li>
               <li>
                 Qty:{" "}
-                <select>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
+                <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                  {[...Array(product.countInStock).keys()].map((item) => (
+                    <option key={item + 1} value={item + 1}>
+                      {item + 1}
+                    </option>
+                  ))}
                 </select>
               </li>
               <li>
-                <button className="details-add-cart-btn primary">
-                  Add to Cart
-                </button>
+                {product.countInStock > 0 && (
+                  <button
+                    onClick={handleAddToCart}
+                    className="details-add-cart-btn primary"
+                  >
+                    Add to Cart
+                  </button>
+                )}
               </li>
             </ul>
           </div>
