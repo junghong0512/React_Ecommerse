@@ -53,10 +53,11 @@ function CartScreen(props) {
                         dispatch(addToCart(item.product, e.target.value))
                       }
                     >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
+                      {[...Array(item.countInStock).keys()].map((x) => (
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
                     </select>
                     <button
                       type="button"
