@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"; // redux store value 조회
+import { signin } from "../actions/userActions";
 
 function SigninScreen(props) {
-  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const userSignin = useSelector((state) => state.userSignin);
+  const { loading, userInfo, error } = userSignin;
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    if (userSignin) {
+      props.history.push("/");
+    }
     return () => {
       //
     };
-  }, []);
+  }, [userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(signin(email, password));
   };
 
   return (
@@ -25,7 +32,11 @@ function SigninScreen(props) {
             <h2>Sign-In</h2>
           </li>
           <li>
-            <lable for="email">Email</lable>
+            {loading && <div>Loading...</div>}
+            {error && <div>{error}</div>}
+          </li>
+          <li>
+            <lable htmlFor="email">Email</lable>
             <input
               type="email"
               name="email"
@@ -34,7 +45,7 @@ function SigninScreen(props) {
             ></input>
           </li>
           <li>
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
