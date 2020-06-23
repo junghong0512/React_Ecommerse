@@ -3,6 +3,7 @@ import data from "./data";
 import dotenv from "dotenv";
 import config from "./config";
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
 import userRoute from "./routes/userRoute";
 
 dotenv.config();
@@ -20,6 +21,7 @@ mongoose
 
 const app = express();
 
+app.use(bodyParser.json()); // middleware for reading the data
 app.use("/api/users", userRoute);
 
 app.get("/api/products/:id", (req, res) => {

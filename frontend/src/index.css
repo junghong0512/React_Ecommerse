@@ -42,6 +42,7 @@ body {
 .header-links a {
   color: #ffffff;
   text-decoration: none;
+  margin-left: 1.5rem;
 }
 .header-links a:hover {
   color: tomato;

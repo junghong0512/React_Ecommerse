@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux"; // redux store value 조회
+import { useSelector, useDispatch } from "react-redux";
 import { signin } from "../actions/userActions";
 
 function SigninScreen(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const userSignin = useSelector((state) => state.userSignin);
+  const userSignin = useSelector((state) => state.userSignin); // redux store value 조회
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userSignin) {
-      props.history.push("/");
+    if (userInfo) {
+      props.history.push("/"); // Signin success redirect to home
     }
     return () => {
       //
