@@ -16,4 +16,29 @@ const getToken = (user) => {
   );
 };
 
-export { getToken };
+const isAuth = (req, res, next) => {
+  const token = req.headers.authorization; // get the token from headers.authorization
+  if (token) {
+    const onlyToken = token.slice(7, token.length); // access to the only token part(get rid of the bearer part)
+    jwt.verify(onlyToken, config.JWT_SECRET, (err, decode) => {
+      if (err) {
+        return res.status(401).send({ msg: "Invalid Token." });
+      }
+      req.user = token;
+      next();
+      return;
+    });
+  }
+  // if the token desn't exist
+  return res.status(401).send({ msg: "Token is not supplied." });
+};
+
+const isAdmin = (req, res, next) => {
+  // req.user is from isAuth
+  if (req.user && req.user.isAdmin) {
+    return next();
+  }
+  return res.status(401).send({ msg: "Admin Token is not valid." });
+};
+
+export { getToken, isAuth, isAdmin };
