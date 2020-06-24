@@ -13,7 +13,7 @@ import {
 function productListReducer(state = { products: [] }, action) {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
-      return { loading: true }; // For showing a laoding box
+      return { loading: true, products: [] }; // For showing a laoding box
     case PRODUCT_LIST_SUCCESS: // Getting the data from the server
       return { loading: false, products: action.payload };
     case PRODUCT_LIST_FAIL:
