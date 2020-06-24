@@ -12,7 +12,7 @@ function ProductsScreen(props) {
   const [countInStock, setCountInStock] = useState("");
   const [description, setDescription] = useState("");
   const [rating, setRating] = useState("");
-  const [numReview, setNumReview] = useState("");
+  const [numReviews, setNumReviews] = useState("");
   const productSave = useSelector((state) => state.productSave); // redux store value 조회
   const {
     loading: loadingSave,
@@ -37,7 +37,7 @@ function ProductsScreen(props) {
         brand,
         category,
         countInStock,
-        numReview,
+        numReviews,
         description,
         rating
       )
@@ -110,12 +110,12 @@ function ProductsScreen(props) {
             ></input>
           </li>
           <li>
-            <lable htmlFor="name">numReview</lable>
+            <lable htmlFor="name">numReviews</lable>
             <input
               type="text"
-              name="numReview"
-              id="numReview"
-              onChange={(e) => setNumReview(e.target.value)}
+              name="numReviews"
+              id="numReviews"
+              onChange={(e) => setNumReviews(e.target.value)}
             ></input>
           </li>
           <li>
