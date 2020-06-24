@@ -16,6 +16,7 @@ const getToken = (user) => {
   );
 };
 
+// Authenticate Users
 const isAuth = (req, res, next) => {
   const token = req.headers.authorization; // get the token from headers.authorization
   if (token) {
@@ -24,15 +25,16 @@ const isAuth = (req, res, next) => {
       if (err) {
         return res.status(401).send({ msg: "Invalid Token." });
       }
-      req.user = token;
+      req.user = token; // if token is collect
       next();
       return;
     });
   }
-  // if the token desn't exist
+  // if the token doesn't exist
   return res.status(401).send({ msg: "Token is not supplied." });
 };
 
+// Authenticate Admin
 const isAdmin = (req, res, next) => {
   // req.user is from isAuth
   if (req.user && req.user.isAdmin) {

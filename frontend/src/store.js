@@ -4,6 +4,7 @@ import Cookie from "js-cookie";
 import {
   productListReducer,
   productDetailsReducer,
+  productSaveReducer,
 } from "./reducer/productReducers";
 import { cartReducer } from "./reducer/cartReducers";
 import { userSigninReducer, userRegisterReducer } from "./reducer/userReducers";
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   cart: cartReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
+  productSave: productSaveReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

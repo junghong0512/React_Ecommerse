@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { signin } from "../actions/userActions";
+import { saveProduct } from "../actions/productActions";
 
-function ProductsScreen(props) {
+function ProductsScreen() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
@@ -11,14 +10,12 @@ function ProductsScreen(props) {
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState("");
   const [description, setDescription] = useState("");
-  const [rating, setRating] = useState("");
-  const [numReviews, setNumReviews] = useState("");
   const productSave = useSelector((state) => state.productSave); // redux store value 조회
   const {
     loading: loadingSave,
     success: successSave,
     error: errorSave,
-  } = userSignin;
+  } = productSave;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,17 +27,15 @@ function ProductsScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      saveProduct(
+      saveProduct({
         name,
         price,
         image,
         brand,
         category,
         countInStock,
-        numReviews,
         description,
-        rating
-      )
+      })
     );
   };
 
@@ -52,8 +47,8 @@ function ProductsScreen(props) {
             <h2>Create Product</h2>
           </li>
           <li>
-            {loading && <div>Loading...</div>}
-            {error && <div>{error}</div>}
+            {loadingSave && <div>Loading...</div>}
+            {errorSave && <div>{errorSave}</div>}
           </li>
           <li>
             <lable htmlFor="name">Name</lable>
@@ -83,12 +78,21 @@ function ProductsScreen(props) {
             ></input>
           </li>
           <li>
-            <lable htmlFor="name">Brand</lable>
+            <lable htmlFor="brand">Brand</lable>
             <input
               type="text"
               name="brand"
               id="brand"
               onChange={(e) => setBrand(e.target.value)}
+            ></input>
+          </li>
+          <li>
+            <lable htmlFor="countInStock">countInStock</lable>
+            <input
+              type="text"
+              name="countInStock"
+              id="countInStock"
+              onChange={(e) => setCountInStock(e.target.value)}
             ></input>
           </li>
           <li>
@@ -101,27 +105,8 @@ function ProductsScreen(props) {
             ></input>
           </li>
           <li>
-            <lable htmlFor="name">Rating</lable>
-            <input
-              type="text"
-              name="rating"
-              id="rating"
-              onChange={(e) => setRating(e.target.value)}
-            ></input>
-          </li>
-          <li>
-            <lable htmlFor="name">numReviews</lable>
-            <input
-              type="text"
-              name="numReviews"
-              id="numReviews"
-              onChange={(e) => setNumReviews(e.target.value)}
-            ></input>
-          </li>
-          <li>
             <lable htmlFor="name">Description</lable>
             <textarea
-              type="text"
               name="description"
               id="description"
               onChange={(e) => setDescription(e.target.value)}
