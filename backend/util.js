@@ -25,13 +25,14 @@ const isAuth = (req, res, next) => {
       if (err) {
         return res.status(401).send({ msg: "Invalid Token." });
       }
-      req.user = token; // if token is collect
+      req.user = decode; // if token is collect
       next();
       return;
     });
+  } else {
+    // if the token doesn't exist
+    return res.status(401).send({ msg: "Token is not supplied." });
   }
-  // if the token doesn't exist
-  return res.status(401).send({ msg: "Token is not supplied." });
 };
 
 // Authenticate Admin
