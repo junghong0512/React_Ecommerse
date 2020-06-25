@@ -25,6 +25,7 @@ const isAuth = (req, res, next) => {
       if (err) {
         return res.status(401).send({ msg: "Invalid Token." });
       }
+      // console.log(req.user); => undefined
       req.user = decode; // if token is collect
       next();
       return;
@@ -37,7 +38,7 @@ const isAuth = (req, res, next) => {
 
 // Authenticate Admin
 const isAdmin = (req, res, next) => {
-  // req.user is from isAuth
+  // req.user is from isAuth => isAuth should be called first.
   if (req.user && req.user.isAdmin) {
     return next();
   }

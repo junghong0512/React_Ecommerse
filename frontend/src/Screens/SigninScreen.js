@@ -10,9 +10,13 @@ function SigninScreen(props) {
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
 
+  const redirect = props.location.search // query string of current page
+    ? props.location.search.split("=")[1]
+    : "/"; // redirect to home when signing in
+
   useEffect(() => {
     if (userInfo) {
-      props.history.push("/"); // Signin success redirect to home
+      props.history.push(redirect); // Signin success redirect to home
     }
     return () => {
       //
@@ -60,7 +64,12 @@ function SigninScreen(props) {
           </li>
           <li>New to HONGSHOP?</li>
           <li>
-            <Link to="/register" className="button text-center secondary">
+            <Link
+              to={
+                redirect === "/" ? "register" : "register?redirect=" + redirect
+              }
+              className="button text-center secondary"
+            >
               Create Account
             </Link>
           </li>

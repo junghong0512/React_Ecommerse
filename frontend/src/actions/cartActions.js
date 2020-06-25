@@ -1,6 +1,10 @@
 import axios from "axios";
 import Cookie from "js-cookie";
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_SAVE_SHIPPING,
+} from "../constants/cartConstants";
 
 const addToCart = (productId, qty) => async (dispatch, getState) => {
   try {
@@ -32,4 +36,9 @@ const removeFromCart = (productId) => async (dispatch, getState) => {
   Cookie.set("cartItems", JSON.stringify(cartItems));
 };
 
-export { addToCart, removeFromCart };
+const saveShipping = (data) => (dispatch) => {
+  // Not a Async because just client side operation
+  dispatch({ type: CART_SAVE_SHIPPING, payload: data });
+};
+
+export { addToCart, removeFromCart, saveShipping };

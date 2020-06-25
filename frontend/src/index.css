@@ -156,8 +156,9 @@ a:hover {
   flex: 2 1 60rem;
 }
 .details-image img {
-  max-width: 60rem;
-  width: 100%;
+  display: block;
+  width: 85%;
+  height: auto;
 }
 .details-info {
   flex: 1 1 30rem;

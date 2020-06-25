@@ -8,10 +8,13 @@ import SigninScreen from "./screens/SigninScreen";
 import { useSelector } from "react-redux";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProductsScreen from "./screens/ProductsScreen";
+import ShippingScreen from "./screens/ShippingScreen";
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
+  const userRegister = useSelector((state) => state.userRegister);
   const { userInfo } = userSignin;
+  const { userInfo: userInfoRegister } = userRegister;
 
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
@@ -32,6 +35,8 @@ function App() {
             <Link to="/cart">Cart</Link>
             {userInfo ? (
               <Link to="/profile">{userInfo.name}</Link>
+            ) : userInfoRegister ? (
+              <Link to="/profile">{userInfoRegister.name}</Link>
             ) : (
               <Link to="/signin">Sign In</Link>
             )}
@@ -60,6 +65,7 @@ function App() {
         <main className="main">
           <div className="content">
             <Route path="/products" component={ProductsScreen} />
+            <Route path="/shipping" component={ShippingScreen} />
             <Route path="/register" component={RegisterScreen} />
             <Route path="/signin" component={SigninScreen} />
             <Route path="/product/:id" component={ProductScreen} />
