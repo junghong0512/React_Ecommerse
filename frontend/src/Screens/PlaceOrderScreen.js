@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { addToCart, removeFromCart } from "../actions/cartActions";
 import { useDispatch, useSelector } from "react-redux";
 import CheckoutSteps from "../components/CheckoutSteps";
+import { createOrder } from "../actions/orderActions";
 
 function PlaceOrderScreen(props) {
   const cart = useSelector((state) => state.cart);
@@ -14,6 +14,9 @@ function PlaceOrderScreen(props) {
     props.history.push("/payment");
   }
 
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { loading, success, error, order } = orderCreate;
+
   const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
   const shippingPrice = itemsPrice > 20000 ? 0 : 2500;
   const taxPrice = 0.1 * itemsPrice;
@@ -22,10 +25,25 @@ function PlaceOrderScreen(props) {
   const dispatch = useDispatch();
 
   const placeOrderHandler = () => {
-    // create an order
+    dispatch(
+      createOrder({
+        cartItems,
+        shipping,
+        payment,
+        itemsPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice,
+      })
+    );
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (success) {
+      console.log(loading, success, error, order);
+      props.history.push("/order/" + order._id);
+    }
+  }, [success]);
 
   const checkoutHandler = () => {
     props.history.push("/signin?redirect=shipping");
@@ -56,8 +74,8 @@ function PlaceOrderScreen(props) {
               {cartItems.length === 0 ? (
                 <div>Cart is Empty</div>
               ) : (
-                cartItems.map((item) => (
-                  <li>
+                cartItems.map((item, index) => (
+                  <li key={index}>
                     <div className="cart-image">
                       <img src={item.image} alt="product" />
                     </div>
