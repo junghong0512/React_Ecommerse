@@ -6,8 +6,8 @@ import { createOrder } from "../actions/orderActions";
 
 function PlaceOrderScreen(props) {
   const cart = useSelector((state) => state.cart);
-
   const { cartItems, shipping, payment } = cart;
+
   if (!shipping) {
     props.history.push("/shipping");
   } else if (!payment) {
@@ -53,8 +53,8 @@ function PlaceOrderScreen(props) {
           <div>
             <h3>Shipping</h3>
             <div>
-              {shipping.address},{shipping.addressDetail},{shipping.postalCode},{" "}
-              {shipping.phoneNumber}
+              {shipping.address}, {shipping.addressDetail},{" "}
+              {shipping.postalCode}, {shipping.phoneNumber}
             </div>
           </div>
           <div>
