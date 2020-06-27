@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+
 const shippingSchema = {
   address: { type: String, required: true },
-  city: { type: String, required: true },
+  addressDetail: { type: String, required: true },
   postalCode: { type: String, required: true },
-  country: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
 };
 
 const paymentSchema = {
@@ -38,7 +39,7 @@ const orderSchema = new mongoose.Schema(
     deliveredAt: { type: Date },
   },
   {
-    timestamps: true,
+    timestamps: true, // Creation time will be saved
   }
 );
 

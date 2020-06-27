@@ -27,7 +27,7 @@ function PlaceOrderScreen(props) {
   const placeOrderHandler = () => {
     dispatch(
       createOrder({
-        cartItems,
+        orderItems: cartItems,
         shipping,
         payment,
         itemsPrice,
@@ -44,10 +44,6 @@ function PlaceOrderScreen(props) {
       props.history.push("/order/" + order._id);
     }
   }, [success]);
-
-  const checkoutHandler = () => {
-    props.history.push("/signin?redirect=shipping");
-  };
 
   return (
     <div>
@@ -96,10 +92,9 @@ function PlaceOrderScreen(props) {
           <ul>
             <li>
               <button
-                onClick={checkoutHandler}
+                onClick={placeOrderHandler}
                 className="button primary full-width"
                 disabled={cartItems.length === 0}
-                onClick={placeOrderHandler}
               >
                 Place Order
               </button>
