@@ -5,7 +5,6 @@ import { isAuth } from "../util";
 const router = express.Router();
 
 router.post("/", isAuth, async (req, res) => {
-  console.log(req);
   const newOrder = new Order({
     orderItems: req.body.orderItems,
     user: req.user._id,

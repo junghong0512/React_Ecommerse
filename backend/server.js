@@ -26,6 +26,9 @@ app.use(bodyParser.json()); // middleware for reading the data
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
+app.get("/api/config/papal", (req, res) => {
+  res.send(config.PAYPAL_CLIENT_ID);
+});
 
 /* app.get("/api/products/:id", (req, res) => {
   const productId = req.params.id;
