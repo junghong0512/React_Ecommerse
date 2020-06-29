@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createOrder, detailsOrder, payOrder } from "../actions/orderActions";
+import { detailsOrder, payOrder } from "../actions/orderActions";
 import PaypalButton from "../components/PaypalButton";
 
 function OrderScreen(props) {
@@ -15,9 +15,7 @@ function OrderScreen(props) {
   } = orderPay;
 
   useEffect(() => {
-    console.log(successPay);
     if (successPay) {
-      console.log(successPay);
       props.history.push("/profile");
     } else {
       dispatch(detailsOrder(props.match.params.id));

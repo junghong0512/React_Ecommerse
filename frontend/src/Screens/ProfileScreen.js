@@ -39,7 +39,7 @@ function ProfileScreen(props) {
   }, []);
 
   return (
-    <div className="profile">
+    <div className="profile content-margined">
       <div className="profile-info">
         <div>
           <form onSubmit={submitHandler}>
@@ -99,13 +99,13 @@ function ProfileScreen(props) {
           </form>
         </div>
       </div>
-      <div className="profile-orders">
+      <div className="profile-orders content-margined">
         {loadingOrders ? (
           <div>Loading...</div>
         ) : errorOrders ? (
           <div>{errorOrders}</div>
         ) : (
-          <table>
+          <table className="table">
             <thead>
               <tr>
                 <th>ID</th>
