@@ -1,21 +1,37 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsOrder } from "../actions/orderActions";
+import { createOrder, detailsOrder, payOrder } from "../actions/orderActions";
+import PaypalButton from "../components/PaypalButton";
 
 function OrderScreen(props) {
   const dispatch = useDispatch();
 
+  const orderPay = useSelector((state) => state.orderPay);
+  const {
+    loading: loadingPay,
+    success: successPay,
+    error: errorPay,
+  } = orderPay;
+
   useEffect(() => {
-    dispatch(detailsOrder(props.match.params.id));
+    console.log(successPay);
+    if (successPay) {
+      props.history.push("/profile");
+    } else {
+      dispatch(detailsOrder(props.match.params.id));
+    }
     return () => {
       //
     };
-  }, []); // []: rendering the order only once when the screen open
+  }, [successPay]); // []: rendering the order only once when the screen open
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, order, error } = orderDetails;
-  const payHandler = () => {};
+
+  const handleSuccessPayment = (paymentResult) => {
+    dispatch(payOrder(order, paymentResult));
+  };
 
   return loading ? (
     <div>Loading...</div>
@@ -50,8 +66,8 @@ function OrderScreen(props) {
             {order.orderItems.length === 0 ? (
               <div>Cart is Empty</div>
             ) : (
-              order.orderItems.map((item, index) => (
-                <li key={index}>
+              order.orderItems.map((item) => (
+                <li key={item._id}>
                   <div className="cart-image">
                     <img src={item.image} alt="product" />
                   </div>
@@ -70,14 +86,14 @@ function OrderScreen(props) {
       </div>
       <div className="placeorder-action">
         <ul>
-          <li>
-            <button
-              onClick={payHandler}
-              className="button primary full-width"
-              disabled={order.orderItems.length === 0}
-            >
-              Pay Now
-            </button>
+          <li className="placeorder-actions-payment">
+            {loadingPay && <div>Finishing Payment...</div>}
+            {!order.isPaid && (
+              <PaypalButton
+                amount={order.totalPrice}
+                onSuccess={handleSuccessPayment}
+              />
+            )}
           </li>
           <li>
             <h3>Order Summary</h3>
