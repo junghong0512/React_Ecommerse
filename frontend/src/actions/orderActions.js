@@ -53,7 +53,6 @@ const payOrder = (order, paymentResult) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    console.log("test");
     const { data } = await axios.put(
       "/api/orders/" + order._id + "/pay",
       paymentResult,
@@ -63,7 +62,6 @@ const payOrder = (order, paymentResult) => async (dispatch, getState) => {
         },
       }
     );
-    console.log("test2");
     dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ORDER_PAY_FAIL, payload: error.message });

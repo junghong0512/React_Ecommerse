@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-
-function PapalButton(props) {
+function PaypalButton(props) {
   const [sdkReady, setSdkReady] = useState(false);
 
   const addPaypalSdk = async () => {
@@ -49,7 +48,6 @@ function PapalButton(props) {
     return <div>Loading...</div>;
   }
 
-  // Access to the button for Paypal
   const Button = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
   return (
@@ -61,4 +59,4 @@ function PapalButton(props) {
   );
 }
 
-export default PapalButton;
+export default PaypalButton;

@@ -28,7 +28,7 @@ router.get("/:id", isAuth, async (req, res) => {
   }
 });
 
-router.put(":id/pay", isAuth, async (req, res) => {
+router.put("/:id/pay", isAuth, async (req, res) => {
   const order = await Order.findById(req.params.id);
   if (order) {
     order.isPaid = true;

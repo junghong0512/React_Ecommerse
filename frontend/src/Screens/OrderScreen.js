@@ -17,6 +17,7 @@ function OrderScreen(props) {
   useEffect(() => {
     console.log(successPay);
     if (successPay) {
+      console.log(successPay);
       props.history.push("/profile");
     } else {
       dispatch(detailsOrder(props.match.params.id));
