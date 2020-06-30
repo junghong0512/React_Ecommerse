@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/junghong91/React_Ecommerse#readme",
   "engines": {
-    "node": "12.4.0",
-    "npm": "6.9.0"
+    "node": "12.16.2",
+    "npm": "6.14.4"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
