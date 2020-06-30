@@ -36,7 +36,7 @@ const isAuth = (req, res, next) => {
   }
 };
 
-// Authenticate Admin
+// Authenticate Admin.
 const isAdmin = (req, res, next) => {
   // req.user is from isAuth => isAuth should be called first.
   if (req.user && req.user.isAdmin) {
