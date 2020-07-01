@@ -34,7 +34,7 @@ export default {
       countInStock: 2,
     },
     {
-      _id: "4",
+      _id: "5",
       name: "Nike Jordan Jersey",
       category: "Pants",
       image: "/images/nikeairforce.jpg",
