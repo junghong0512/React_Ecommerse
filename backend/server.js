@@ -16,7 +16,7 @@ mongoose
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
-  .catch((error) => console.log(error.reason)); // see if any error in mongoose
+  .catch((error) => console.log(error.reason)); //see if any error in mongoose
 
 const app = express();
 
