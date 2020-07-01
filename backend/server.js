@@ -11,7 +11,7 @@ const mongodbUrl = config.MONGODB_URL;
 
 const PORT = process.env.PORT || 5050;
 
-// Connect to the MongoDB
+// Connect to the MongoDB.
 mongoose
   .connect(mongodbUrl, {
     useNewUrlParser: true,
