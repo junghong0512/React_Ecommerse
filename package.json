@@ -6,7 +6,7 @@
   "scripts": {
     "server": "nodemon --watch backend --exec babel-node backend/server.js",
     "build": "rm -rf dist && babel backend -d dist",
-    "start": "PRODUCTION=true node backend/server.js",
+    "start": "PRODUCTION=true babel-node backend/server.js",
     "prestart": "npm run build",
     "heroku-postbuild": "npm run build && cd frontend && npm install && npm run build"
   },
