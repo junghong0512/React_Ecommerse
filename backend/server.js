@@ -20,7 +20,7 @@ mongoose
 
 const app = express();
 
-app.use(bodyParser.json()); // middleware for reading the data
+app.use(bodyParser.json()); // middleware for reading the data.
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
