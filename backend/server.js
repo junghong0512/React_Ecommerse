@@ -1,6 +1,7 @@
 import express from "express";
 import config from "./config";
 import mongoose from "mongoose";
+import path from "path";
 import bodyParser from "body-parser";
 import userRoute from "./routes/userRoute";
 import productRoute from "./routes/productRoute";
@@ -29,10 +30,10 @@ app.get("/api/config/paypal", (req, res) => {
   res.send(config.PAYPAL_CLIENT_ID);
 });
 
-// app.use(express.static(path.join(__dirname, "/../frontend/build")));
-// app.get("*", (req, res) =>
-//   res.sendFile(path.join("${__dirname}/../frontend/build/index.html"))
-// );
+app.use(express.static(path.join(__dirname, "/../frontend/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join("${__dirname}/../frontend/build/index.html"))
+);
 
 app.listen(PORT, () => {
   console.log("Server started at http://localhost:" + PORT);
