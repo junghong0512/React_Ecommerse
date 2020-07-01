@@ -4,7 +4,7 @@
   "description": "Building a React Ecommerse Wep",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --delay 2 --watch backend --exec babel-node backend/server.js",
+    "start": "nodemon --watch backend --exec babel-node backend/server.js",
     "build": "rm -rf dist && babel backend -d dist",
     "heroku-postbuild": "npm run build && cd frontend && npm install && npm run build"
   },
