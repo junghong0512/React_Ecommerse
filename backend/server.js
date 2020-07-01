@@ -9,8 +9,6 @@ import orderRoute from "./routes/orderRoute";
 
 const mongodbUrl = config.MONGODB_URL;
 
-const PORT = process.env.PORT || 5050;
-
 // Connect to the MongoDB
 mongoose
   .connect(mongodbUrl, {
@@ -30,14 +28,11 @@ app.get("/api/config/paypal", (req, res) => {
   res.send(config.PAYPAL_CLIENT_ID);
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("fontend/build"));
+app.use(express.static(path.join(__dirname, "/../frontend/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(`${__dirname}/../frontend/build/index.html`));
+});
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "build")); // relative path
-  });
-}
-
-app.listen(PORT, () => {
+app.listen(config.PORT, () => {
   console.log("Server started at http://localhost:" + PORT);
 });
