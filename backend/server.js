@@ -20,7 +20,7 @@ mongoose
 
 const app = express();
 
-app.use(bodyParser.json()); // middleware for reading the data.
+app.use(bodyParser.json()); // middleware for reading the data
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
@@ -34,5 +34,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(config.PORT, () => {
-  console.log("Server started at http://localhost:" + PORT);
+  console.log("Server started at http://localhost:5000");
 });
