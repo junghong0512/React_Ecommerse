@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Create the product
-router.post("/", isAuth, async (req, res) => {
+router.post("/", isAuth, isAdmin, async (req, res) => {
   const product = new Product({
     name: req.body.name,
     price: req.body.price,

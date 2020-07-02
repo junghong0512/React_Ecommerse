@@ -1,5 +1,16 @@
 import mongoose from "mongoose";
 
+const reviewSchema = new mongoose.Schema(
+  {
+    name: { type: String, require: true },
+    rating: { type: Number, default: 0 },
+    comment: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 // How Product will be save in the MongoDB database
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -11,6 +22,7 @@ const productSchema = new mongoose.Schema({
   description: { type: String, required: true },
   rating: { type: Number, default: 0, required: true },
   numReviews: { type: Number, default: 0, required: true },
+  reviews: [reviewSchema],
 });
 
 // Create Model ("Product": name of the collection saved in mongoDB)
