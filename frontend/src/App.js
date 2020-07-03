@@ -72,7 +72,7 @@ function App() {
               <Link to="/category/Shoes">Shoes</Link>
             </li>
             <li>
-              <Link to="/category/Accesories">Accesories</Link>
+              <Link to="/category/Accesories">Accessories</Link>
             </li>
           </ul>
         </aside>
@@ -93,7 +93,7 @@ function App() {
             <Route path="/" exact={true} component={HomeScreen} />
           </div>
         </main>
-        <footer className="footer">All right reserved</footer>
+        <footer className="footer">All rights reserved</footer>
       </div>
     </BrowserRouter>
   );
