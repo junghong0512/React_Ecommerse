@@ -1,31 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"; // redux store value 조회
-import { detailsProduct } from "../actions/productActions";
+import { detailsProduct, saveProductReview } from "../actions/productActions";
 import Rating from "../components/Rating";
+import { PRODUCT_REVIEW_SAVE_RESET } from "../constants/productConstants";
 
 function ProductScreen(props) {
   const [qty, setQty] = useState(1);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
+  const productReviewSave = useSelector((state) => state.productReviewSave);
+  const { success: productSaveSuccess } = productReviewSave;
 
   const productDetails = useSelector((state) => state.productDetails);
   const { product, loading, error } = productDetails;
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (productSaveSuccess) {
+      alert("Review submitted successfully.");
+      setRating(1);
+      setComment("");
+      dispatch({ type: PRODUCT_REVIEW_SAVE_RESET });
+    }
     dispatch(detailsProduct(props.match.params.id));
     return () => {
       //
     };
-  }, []);
+  }, [productSaveSuccess]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     // dispatch action to save the user comment
+    dispatch(
+      saveProductReview(props.match.params.id, {
+        name: userInfo.name,
+        rating,
+        comment,
+      })
+    );
   };
 
   const handleAddToCart = () => {
@@ -150,7 +167,7 @@ function ProductScreen(props) {
                   <div>
                     <Rating value={review.rating} />
                   </div>
-                  <div>{review.createAt.subString(0, 10)}</div>
+                  <div>{review.createdAt.substring(0, 10)}</div>
                   <div>{review.comment}</div>
                 </li>
               ))}
