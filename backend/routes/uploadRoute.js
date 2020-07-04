@@ -25,8 +25,8 @@ router.post("/", upload.single("image"), (req, res) => {
 
 // config aws is based on AccessID and SecretAccessKey, and Setting
 aws.config.update({
-  accessKeyId: config.accessKeyId,
-  secretAccessKey: config.secretAccessKey,
+  AWS_ACCESS_KEY_ID: config.accessKeyId,
+  AWS_SECRET_ACCESS_KEY: config.secretAccessKey,
 });
 
 // access to s3 service
