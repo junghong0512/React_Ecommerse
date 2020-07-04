@@ -40,13 +40,16 @@ function HomeScreen(props) {
           <form onSubmit={submitHandler}>
             <input
               name="searchKeyword"
+              placeholder="What search?"
               onChange={(e) => setSearchKeyword(e.target.value)}
             />
-            <button type="submit">Search</button>
+            <button type="submit">
+              <i class="fas fa-search"></i>
+            </button>
           </form>
         </li>
         <li>
-          Sort By{" "}
+          <span>Sort By: </span>
           <select name="sortOrder" onChange={sortHandler}>
             <option value="">Newest</option>
             <option value="lowest">Lowest</option>
@@ -74,7 +77,7 @@ function HomeScreen(props) {
                   <Link to={`/product/${product._id}`}>{product.name}</Link>
                 </div>
                 <div className="product-brand">{product.brand}</div>
-                <div className="product-price">{product.price}원</div>
+                <div className="product-price">$ {product.price}</div>
                 <div className="product-rating">
                   <Rating
                     value={product.rating}

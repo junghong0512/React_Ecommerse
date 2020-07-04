@@ -37,7 +37,9 @@ function App() {
             <Link to="/">HONGSHOP</Link>
           </div>
           <div className="header-links">
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">
+              Cart <i class="fas fa-shopping-cart"></i>
+            </Link>
             {userInfo ? (
               <Link to="/profile">{userInfo.name}</Link>
             ) : userInfoRegister ? (
@@ -57,22 +59,27 @@ function App() {
           </div>
         </header>
         <aside className="sidebar">
-          <h3>Shopping Categories</h3>
-          <button className="sidebar-close-button" onClick={closeMenu}>
-            x
-          </button>
+          <div className="sidebar-header">
+            <h3>
+              <i class="fas fa-list-ul"></i>
+              <span> Categories</span>
+            </h3>
+            <button className="sidebar-close-button" onClick={closeMenu}>
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
           <ul className="categories">
             <li>
-              <Link to="/category/Pants">Pants</Link>
+              <Link to="/">All</Link>
             </li>
             <li>
-              <Link to="/category/Shirts">Shirts</Link>
+              <Link to="/category/Outfits">Outfits</Link>
             </li>
             <li>
               <Link to="/category/Shoes">Shoes</Link>
             </li>
             <li>
-              <Link to="/category/Accesories">Accessories</Link>
+              <Link to="/category/Accessories">Accessories</Link>
             </li>
           </ul>
         </aside>

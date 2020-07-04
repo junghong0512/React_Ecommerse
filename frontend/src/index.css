@@ -86,7 +86,8 @@ a:hover {
   justify-content: space-between;
   height: 100%;
 }
-.product-name {
+.product-name a {
+  color: black;
   font-size: 2rem;
   font-weight: bold;
 }
@@ -142,12 +143,13 @@ a > .rating > span:last-child {
   color: #ffffff;
   cursor: pointer;
   font-weight: 900;
+  outline: none;
 }
 .sidebar {
   position: fixed;
   transition: all 0.5s;
   transform: translateX(-30rem);
-  width: 30rem;
+  width: 20rem;
   background-color: #f0f0f0;
   height: 100%;
 }
@@ -157,18 +159,38 @@ a > .rating > span:last-child {
 .sidebar.open {
   transform: translateX(0);
 }
+.sidebar-header {
+  border-bottom: 0.1rem solid white;
+}
 .sidebar-close-button {
-  border-radius: 50%;
-  border: 0.1rem #000000 solid;
-  width: 3rem;
-  height: 3rem;
-  padding: 0.5rem;
-  font-size: 2rem;
-  padding-top: 0;
+  font-size: 2.5rem;
+  border: none;
+  outline: none;
   cursor: pointer;
   position: absolute;
-  right: 0.5rem;
+  right: 1rem;
   top: 1.5rem;
+}
+.sidebar-close-button:hover {
+  color: tan;
+}
+
+/* categories on the Sidebar */
+.sidebar h3 {
+  margin: 1rem;
+  margin-top: 2rem;
+}
+.categories {
+  padding: 0;
+}
+.categories a {
+  display: flex;
+  list-style-type: none;
+  padding: 1rem;
+  font-size: 2rem;
+}
+.categories a:hover {
+  background-color: #ffffff;
 }
 
 /* Product Details */
@@ -450,7 +472,7 @@ tbody > tr:nth-child(odd) {
   margin-top: 0.2rem;
 }
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: flex;
 }
 
 /* filter */
@@ -462,6 +484,7 @@ tbody > tr:nth-child(odd) {
   max-width: 47rem;
   justify-content: space-between;
   align-items: center;
+  color: rgba(0, 0, 0, 0.5);
 }
 .filter input,
 .filter button,
@@ -471,19 +494,8 @@ tbody > tr:nth-child(odd) {
   border: 0.1rem #c0c0c0 solid;
   font-size: 1.6rem;
 }
-
-/* categories on the Sidebar */
-.sidebar h3 {
-  margin: 1rem;
-}
-.categories {
-  padding: 0;
-}
-.categories a {
-  display: flex;
-  list-style-type: none;
-  padding: 1rem;
-}
-.categories a:hover {
-  background-color: #c0c0c0;
+.filter button {
+  background-color: transparent;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
 }
