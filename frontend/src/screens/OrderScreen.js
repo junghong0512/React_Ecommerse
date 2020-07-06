@@ -14,6 +14,9 @@ function OrderScreen(props) {
     error: errorPay,
   } = orderPay;
 
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const { loading, order, error } = orderDetails;
+
   useEffect(() => {
     if (successPay) {
       props.history.push("/profile");
@@ -24,9 +27,6 @@ function OrderScreen(props) {
       //
     };
   }, [successPay]); // []: rendering the order only once when the screen open
-
-  const orderDetails = useSelector((state) => state.orderDetails);
-  const { loading, order, error } = orderDetails;
 
   const handleSuccessPayment = (paymentResult) => {
     dispatch(payOrder(order, paymentResult));

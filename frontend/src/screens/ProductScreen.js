@@ -52,10 +52,12 @@ function ProductScreen(props) {
   return (
     <div>
       <div className="back-to-home">
-        <Link to="/">Back to Home</Link>
+        <Link to="/">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </Link>
       </div>
       {loading ? (
-        <div>Loading...</div>
+        <div className="loading">Loading...</div>
       ) : error ? (
         <div>{error}</div>
       ) : (
@@ -78,7 +80,7 @@ function ProductScreen(props) {
                   </a>
                 </li>
                 <li>
-                  Price: <b>￦{product.price}</b>
+                  Price: <b>${product.price}</b>
                 </li>
                 <li>
                   Description:
@@ -162,7 +164,7 @@ function ProductScreen(props) {
                 )}
               </li>
               {product.reviews.map((review) => (
-                <li key={review._id}>
+                <li className="review-list" key={review._id}>
                   <div>{review.name}</div>
                   <div>
                     <Rating value={review.rating} />

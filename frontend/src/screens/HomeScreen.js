@@ -34,7 +34,7 @@ function HomeScreen(props) {
 
   return (
     <>
-      {category && <h2>{category}</h2>}
+      {category && <h2 className="home-screen-category">{category}</h2>}
       <ul className="filter">
         <li>
           <form onSubmit={submitHandler}>
@@ -44,7 +44,7 @@ function HomeScreen(props) {
               onChange={(e) => setSearchKeyword(e.target.value)}
             />
             <button type="submit">
-              <i class="fas fa-search"></i>
+              <i className="fas fa-search"></i>
             </button>
           </form>
         </li>
@@ -58,7 +58,7 @@ function HomeScreen(props) {
         </li>
       </ul>
       {loading ? (
-        <div>Loading...</div>
+        <div className="loading">Loading...</div>
       ) : error ? (
         <div>{error}</div>
       ) : (

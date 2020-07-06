@@ -38,7 +38,7 @@ function App() {
           </div>
           <div className="header-links">
             <Link to="/cart">
-              Cart <i class="fas fa-shopping-cart"></i>
+              Cart <i className="fas fa-shopping-cart"></i>
             </Link>
             {userInfo ? (
               <Link to="/profile">{userInfo.name}</Link>
@@ -60,14 +60,12 @@ function App() {
         </header>
         <aside className="sidebar">
           <div className="sidebar-header">
-            <h3>
-              <i class="fas fa-list-ul"></i>
-              <span> Categories</span>
-            </h3>
-            <button className="sidebar-close-button" onClick={closeMenu}>
-              <i class="fas fa-times"></i>
-            </button>
+            <i className="fas fa-list-ul"></i>
+            <span> Categories</span>
           </div>
+          <button className="sidebar-close-button" onClick={closeMenu}>
+            <i className="fas fa-times"></i>
+          </button>
           <ul className="categories">
             <li>
               <Link to="/">All</Link>
@@ -100,7 +98,17 @@ function App() {
             <Route path="/" exact={true} component={HomeScreen} />
           </div>
         </main>
-        <footer className="footer">All rights reserved</footer>
+        <footer className="footer">
+          All Rights Reserved.
+          <a
+            className="footer-link"
+            href="https://github.com/junghong91/React_Ecommerse"
+            target="_blank"
+          >
+            <i className="fab fa-github"></i>
+            Github of this page
+          </a>
+        </footer>
       </div>
     </BrowserRouter>
   );
